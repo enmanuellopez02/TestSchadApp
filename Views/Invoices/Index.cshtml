@@ -1,0 +1,80 @@
+﻿@model DataCollection<Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<section class="ip-box-container">
+    <div class="ip-submenu-top">
+        <ul>
+            <li>
+                <a asp-action="Create">
+                    <i class="fal fa-plus-circle ip-color-secondary"></i>
+                    <span>Create new</span>
+                </a>
+            </li>
+            <li>
+                <div class="ip-submenu-search">
+                    <i class="fal fa-search"></i>
+                    <form asp-action="Index" method="get">
+                        <input type="text" class="ip-form-control-search" placeholder="Sarch..." title="Search" name="SearchString" value="@ViewData["currentFilter"]" autocomplete="off">
+                        <input type="submit" value="Buscar" class="btn btn-secondary" />
+                    </form>
+                </div>
+            </li>
+            <li>
+                <a asp-action="Index">
+                    <i class="fal fa-undo-alt ip-color-secondary"></i>
+                    <span>Back to list</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <table class="ip-table">
+        <thead class="ip-table-header">
+            <tr class="ip-table-caption">
+                <th class="ip-table-caption-cell">Id</th>
+                <th class="ip-table-caption-cell">Customer Name</th>
+                <th class="ip-table-caption-cell">TotalItbis</th>
+                <th class="ip-table-caption-cell">SubTotal</th>
+                <th class="ip-table-caption-cell">Total</th>
+                <th class="ip-table-caption-cell">Items</th>
+                <th class="ip-table-caption-cell"></th>
+            </tr>
+        </thead>
+        <tbody class="ip-divTableBody">
+            @foreach (var item in Model.Items)
+            {
+                <tr class="ip-table-row">
+                    <td class="ip-table-cell" title="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td class="ip-table-cell">
+                        @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                    </td>
+                    <td class="ip-table-cell">
+                        @Html.DisplayFor(modelItem => item.TotalItbis)
+                    </td>
+                    <td class="ip-table-cell">
+                        @Html.DisplayFor(modelItem => item.SubTotal)
+                    </td>
+                    <td class="ip-table-cell">
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td class="ip-table-cell">
+                        @item.InvoiceDetails.Count()
+                    </td>
+                    @*<td class="ip-table-cell">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" asp-route-pageNumber="@(Model.Page - 1)" class="btn btn-link @prevDisabled">Previous</a>
+    <a asp-action="Index" asp-route-pageNumber="@(Model.Page + 1)" class="btn btn-link @nextDisabled">Next</a>
+</section>

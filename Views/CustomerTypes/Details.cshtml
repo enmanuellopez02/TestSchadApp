@@ -1,0 +1,30 @@
+﻿@model CustomerType
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="ip-box-container">
+    <h2>Customer Type</h2>
+    <hr />
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Customer Type Id
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                Description
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</section>
