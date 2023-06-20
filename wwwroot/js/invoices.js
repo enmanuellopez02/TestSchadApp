@@ -7,6 +7,22 @@ function Init() {
 let item = 0;
 
 function AddProduct() {
+    if (tb_product.value == "") {
+        alert("product name is required");
+        tb_product.focus();
+        return;
+    }
+    if (parseInt(tb_qty.value) < 1) {
+        alert("quantity is required");
+        tb_qty.focus();
+        return;
+    }
+    if (parseInt(tb_price.value) < 1) {
+        alert("price is required");
+        tb_price.focus();
+        return;
+    }
+
     const produc = tb_product.value;
     const qty = tb_qty.value;
     const price = tb_price.value;

@@ -1,12 +1,12 @@
 ﻿@model Invoice
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Invoice";
     var customers = ViewData["Customers"] as SelectList;
 }
 
 <section class="ip-box-container">
-    <h2>Customer</h2>
+    <h2>Invoice</h2>
     <hr />
     <div class="row">
         <div class="col-md-12">
@@ -19,16 +19,16 @@
                         <span asp-validation-for="@Model.CustomerId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="tb_product" class="control-label"></label>
+                        <label for="tb_product" class="control-label">Product</label>
                         <input id="tb_product" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="tb_qty" class="control-label"></label>
-                        <input id="tb_qty" class="form-control" min="1" value="1" />    
+                        <label for="tb_qty" class="control-label">Quantity</label>
+                        <input id="tb_qty" class="form-control" type="number" min="1" value="1" />    
                     </div>
                     <div class="form-group">
-                        <label for="tb_price" class="control-label"></label>
-                        <input id="tb_price" type="number" class="form-control" min="1" value="1" />
+                        <label for="tb_price" class="control-label">Price</label>
+                        <input id="tb_price" class="form-control" type="number" min="1" value="1" />
                     </div>
                     <div class="form-group">
                         <button id="btn_add_item" type="button" class="btn btn-success dev-btn-block">Add</button>
